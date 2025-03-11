@@ -2,10 +2,25 @@ import { IExperienceItem } from "@/types";
 
 const experiences: IExperienceItem[] = [
   {
+    designation: "IT DevOps & ISMS Cloud Senior",
+    company: "PT. Lippo General Insurance",
+    startDate: "Marc 2024",
+    isCurrentJob: true,
+    location: "Tangerang, Indonesia",
+    description: [
+      "Design, implement, and manage CI/CD pipelines for automated deployment and integration.",
+      "Collaborate with development and operations teams to streamline software delivery processes.",
+      "Manage and optimize cloud infrastructure (e.g., AWS, Azure, GCP) for scalability and performance.",
+      "Automate infrastructure provisioning, configuration, and monitoring using tools like Terraform, Ansible, or Kubernetes.",
+      "Troubleshoot and resolve issues related to application deployment, performance, and scalability.",
+      "Implement monitoring and logging solutions (e.g., Prometheus, Grafana, ELK Stack) to ensure system reliability."
+    ],
+  },
+  {
     designation: "Solution Architect",
     company: "Central Data Technology",
     startDate: "Oct 2024",
-    isCurrentJob: true,
+    isCurrentJob: false,
     location: "Jakrta, Indonesia",
     description: [
       "Currently working on developing innovative cloud solutions.",
