@@ -20,6 +20,7 @@ const experiences: IExperienceItem[] = [
     designation: "Solution Architect",
     company: "Central Data Technology",
     startDate: "Oct 2024",
+    endDate: "Feb 2025",
     isCurrentJob: false,
     location: "Jakrta, Indonesia",
     description: [
