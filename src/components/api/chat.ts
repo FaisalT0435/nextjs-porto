@@ -10,27 +10,21 @@ const options = {
     'x-rapidapi-key': 'ddec35a1b7msh59c1a00982f7dbfp1e2f3cjsnb418123ed5ee',
     'x-rapidapi-host': 'deepseek-v3.p.rapidapi.com',
     'Content-Type': 'application/json'
-  },
-  data: {
-    messages: [
-      {
-        role: 'user',
-        content: 'input text'
-      }
-    ]
   }
 };
 
-async function fetchData() {
-	try {
-		const response = await axios.request(options);
-		console.log(response.data);
-	} catch (error) {
-		console.error(error);
-	}
-}
-
-fetchData();
+export const fetchData = async (message: string) => {
+    try {
+      const response = await axios.request({
+        ...options,
+        data: { messages: [{ role: 'user', content: message }] },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching chat response:', error);
+      return { messages: [{ content: 'Error retrieving response' }] };
+    }
+  };
 
 // import { NextResponse } from 'next/server';
 // import openai from '@/components/api/openai';
