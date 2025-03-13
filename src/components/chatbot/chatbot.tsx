@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { CSSProperties } from 'react'; // Untuk tipe CSSProperties
-import { fetchData } from '@components/api/chat';
+import fetchData from '@components/api/chat';
 
 const Chatbot: React.FC = () => {
   const [userMessage, setUserMessage] = useState<string>('');
