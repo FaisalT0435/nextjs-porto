@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
 import styles from "@/app/scroll.module.scss";
+import Chatbot from '@/components/chatbot/chatbot';
 
 const ScrollToTop = () => {
   const [showTopBtn, setShowTopBtn] = useState<boolean>(false);
@@ -34,8 +35,11 @@ const ScrollToTop = () => {
       {showTopBtn ? (
         <button onClick={goToTop} className={styles.btnStyle}>
           <FontAwesomeIcon icon={faArrowUpLong} className={styles.iconStyle} />
+          
         </button>
+        
       ) : null}
+      <Chatbot/>
     </div>
   );
 };
