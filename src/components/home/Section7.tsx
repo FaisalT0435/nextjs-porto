@@ -5,7 +5,6 @@ import Column from "@/components/core/Column";
 import SectionTitle from "@/components/common/SectionTitle";
 import SocialButton from "./ui/SocialButton";
 import socialLinks from "@/data/socialLinks";
-import Chatbot from '@/components/chatbot/chatbot';
 
 
 const HomeSection7 = ({ id }: { id: string }) => {
