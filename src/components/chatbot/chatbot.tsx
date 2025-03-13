@@ -1,7 +1,8 @@
-"use client"; // Tambahkan ini di bagian paling atas
+"use client"; // Pastikan ini ada di bagian paling atas
 
 import { useState } from 'react';
 import axios from 'axios';
+import { CSSProperties } from 'react'; // Pastikan ini diimpor
 
 type Message = {
   role: 'user' | 'assistant';
@@ -21,7 +22,7 @@ const Chatbot = () => {
 
     try {
       // Kirim pesan ke API route
-      const response = await axios.post('@components/chatbot/chatbot', { message: input });
+      const response = await axios.post('/api/chat', { message: input });
 
       // Tambahkan respon chatbot ke chat
       setMessages((prev) => [...prev, { role: 'assistant', content: response.data.reply }]);
@@ -29,6 +30,49 @@ const Chatbot = () => {
       console.error('Error:', error);
       setMessages((prev) => [...prev, { role: 'assistant', content: 'Maaf, terjadi kesalahan.' }]);
     }
+  };
+
+  const styles: { [key: string]: CSSProperties } = {
+    chatbotContainer: {
+      width: '300px',
+      border: '1px solid #ccc',
+      borderRadius: '8px',
+      padding: '10px',
+      backgroundColor: '#f9f9f9',
+    },
+    messagesContainer: {
+      height: '300px',
+      overflowY: 'auto',
+      marginBottom: '10px',
+    },
+    userMessage: {
+      textAlign: 'right',
+      color: 'blue',
+      margin: '5px 0',
+    },
+    botMessage: {
+      textAlign: 'left',
+      color: 'green',
+      margin: '5px 0',
+    },
+    inputContainer: {
+      display: 'flex',
+    },
+    input: {
+      flex: 1,
+      padding: '8px',
+      borderRadius: '4px',
+      border: '1px solid #ccc',
+    },
+    button: {
+      marginLeft: '10px',
+      padding: '8px 12px',
+      backgroundColor: '#0070f3',
+      color: '#fff',
+      border: 'none',
+      borderRadius: '4px',
+      cursor: 'pointer',
+    },
   };
 
   return (
@@ -58,49 +102,6 @@ const Chatbot = () => {
       </div>
     </div>
   );
-};
-
-const styles = {
-  chatbotContainer: {
-    width: '300px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    padding: '10px',
-    backgroundColor: '#f9f9f9',
-  },
-  messagesContainer: {
-    height: '300px',
-    overflowY: 'auto',
-    marginBottom: '10px',
-  },
-  userMessage: {
-    textAlign: 'right',
-    color: 'blue',
-    margin: '5px 0',
-  },
-  botMessage: {
-    textAlign: 'left',
-    color: 'green',
-    margin: '5px 0',
-  },
-  inputContainer: {
-    display: 'flex',
-  },
-  input: {
-    flex: 1,
-    padding: '8px',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-  },
-  button: {
-    marginLeft: '10px',
-    padding: '8px 12px',
-    backgroundColor: '#0070f3',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
 };
 
 export default Chatbot;
