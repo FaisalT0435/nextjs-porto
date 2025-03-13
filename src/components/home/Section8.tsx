@@ -8,4 +8,4 @@ const HomeSection8 = ({ id }: { id: string }) => {
   );
 };
 
-export default Home;
+export default HomeSection8;
