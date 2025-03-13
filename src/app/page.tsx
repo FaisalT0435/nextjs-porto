@@ -20,7 +20,7 @@ const Home = () => {
       <HomeSection5 id="projects" />
       <HomeSection6 id="certificate" />
       <HomeSection7 id="contact" />
-      // <HomeSection8 id="chatbot" />
+
     </PageBox>
   );
 };
