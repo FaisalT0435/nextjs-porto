@@ -16,11 +16,11 @@ interface GenerateRequest {
     }
   
     try {
-      const response = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: body.prompt,
-        max_tokens: 150,
-      });
+        const response = await openai.completions.create({
+            model: "text-davinci-003",
+            prompt: body.prompt,
+            max_tokens: 150,
+          });
   
       return NextResponse.json({ result: response.data.choices[0].text });
     } catch (error) {
