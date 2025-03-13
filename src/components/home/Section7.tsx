@@ -29,7 +29,6 @@ const HomeSection7 = ({ id }: { id: string }) => {
               );
             })}
           </GridBox>
-          <Chatbot/>
 
           <p className="text-center mx-auto mt-16 text-2xl/6 font-semibold">
             I&apos;m{" "}
