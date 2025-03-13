@@ -22,11 +22,10 @@ interface GenerateRequest {
             max_tokens: 150,
           });
   
-      return NextResponse.json({ result: response.data.choices[0].text });
-    } catch (error) {
-      console.error(error);
-      return NextResponse.json({ error: "Failed to generate response" }, { status: 500 });
-    }
+          const completionText = response.choices[0].text;
+        } catch (error) {
+          console.error('Error:', error);
+        }
   }
 
 
