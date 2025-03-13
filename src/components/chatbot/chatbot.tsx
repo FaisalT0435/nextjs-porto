@@ -28,7 +28,7 @@ const Chatbot: React.FC = () => {
     <div>
       {/* Logo Deepseek sebagai tombol untuk membuka chatbot */}
       <img
-        src="/path-to-deepseek-logo.png" 
+        src="/images/deepseek.png" 
         alt="Deepseek Logo"
         style={{ width: '100px', cursor: 'pointer' }}
         onClick={() => setIsChatOpen(!isChatOpen)}
