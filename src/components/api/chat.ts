@@ -1,39 +1,70 @@
 // import { NextApiRequest, NextApiResponse } from 'next';
-// import axios from 'axios';
+import axios from 'axios';
 
-import { NextResponse } from 'next/server';
-import openai from '@/components/api/openai';
+const axios = require('axios');
 
-interface GenerateRequest {
-    prompt: string;
+const options = {
+  method: 'POST',
+  url: 'https://deepseek-v3.p.rapidapi.com/chat',
+  headers: {
+    'x-rapidapi-key': 'ddec35a1b7msh59c1a00982f7dbfp1e2f3cjsnb418123ed5ee',
+    'x-rapidapi-host': 'deepseek-v3.p.rapidapi.com',
+    'Content-Type': 'application/json'
+  },
+  data: {
+    messages: [
+      {
+        role: 'user',
+        content: 'input text'
+      }
+    ]
   }
+};
+
+async function fetchData() {
+	try {
+		const response = await axios.request(options);
+		console.log(response.data);
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+fetchData();
+
+// import { NextResponse } from 'next/server';
+// import openai from '@/components/api/openai';
+
+// interface GenerateRequest {
+//     prompt: string;
+//   }
   
-  export async function POST(request: Request) {
-    const body: GenerateRequest = await request.json();
+//   export async function POST(request: Request) {
+//     const body: GenerateRequest = await request.json();
   
-    if (!body.prompt) {
-      return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
-    }
+//     if (!body.prompt) {
+//       return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
+//     }
   
-    try {
-        const response = await openai.completions.create({
-            model: "text-davinci-003",
-            prompt: body.prompt,
-            max_tokens: 150,
-          });
+//     try {
+//         const response = await openai.completions.create({
+//             model: "text-davinci-003",
+//             prompt: body.prompt,
+//             max_tokens: 150,
+//           });
   
-          const completionText = response.choices[0].text;
-        } catch (error) {
-          console.error('Error:', error);
-        }
-  }
+//           const completionText = response.choices[0].text;
+//         } catch (error) {
+//           console.error('Error:', error);
+//         }
+//   }
 
 
 // Logika API untuk mendapatkan balasan dari chatbot
 // const getChatResponse = async (message: string): Promise<string> => {
 //   try {
 //     // Ganti dengan API endpoint DeepSeek atau model AI lainnya
-//     const response = await axios.post('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', {
+//     const response = await axios.post('gg', {
 //       prompt: message,
 //       max_tokens: 150,
 //     });
