@@ -19,13 +19,13 @@ export const fetchData = async (message: string) => {
         ...options,
         data: { messages: [{ role: 'user', content: message }] },
       });
-      return { messages: [{ content: response.data }] };
+      return response.data;
     } catch (error) {
       console.error('Error fetching chat response:', error);
       return { messages: [{ content: 'Error retrieving response' }] };
     }
   };
-
+  
   export default fetchData;
 
 // import { NextResponse } from 'next/server';
