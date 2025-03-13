@@ -7,7 +7,7 @@ const options = {
   method: 'POST',
   url: 'https://deepseek-v3.p.rapidapi.com/chat',
   headers: {
-    'x-rapidapi-key': 'ddec35a1b7msh59c1a00982f7dbfp1e2f3cjsnb418123ed5ee',
+    'x-rapidapi-key': 'ddeccccccc2f7dbfp1sssssse2fg',
     'x-rapidapi-host': 'deepseek-v3.p.rapidapi.com',
     'Content-Type': 'application/json'
   }
