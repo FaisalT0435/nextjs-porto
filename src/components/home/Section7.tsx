@@ -37,10 +37,11 @@ const HomeSection7 = ({ id }: { id: string }) => {
             <span className="text-[var(--primaryColor)]">help give </span> for
             the solution.
           </p>
-          <Chatbot>
+          <Chatbot/>
         </Column>
       </ConstrainedBox>
     </ResponsiveBox>
+    
   );
 };
 
