@@ -1,6 +1,7 @@
+"use client"; // Tambahkan ini di bagian paling atas
+
 import { useState } from 'react';
 import axios from 'axios';
-
 
 type Message = {
   role: 'user' | 'assistant';
@@ -19,8 +20,8 @@ const Chatbot = () => {
     setInput('');
 
     try {
-      // Kirim pesan ke API DeepSeek atau model AI lainnya
-      const response = await axios.post('@/components/api/chat', { message: input });
+      // Kirim pesan ke API route
+      const response = await axios.post('@components/chatbot/chatbot', { message: input });
 
       // Tambahkan respon chatbot ke chat
       setMessages((prev) => [...prev, { role: 'assistant', content: response.data.reply }]);
