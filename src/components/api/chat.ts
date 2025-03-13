@@ -25,6 +25,8 @@ export const fetchData = async (message: string) => {
       return { messages: [{ content: 'Error retrieving response' }] };
     }
   };
+  
+  export default fetchData;
 
 // import { NextResponse } from 'next/server';
 // import openai from '@/components/api/openai';
