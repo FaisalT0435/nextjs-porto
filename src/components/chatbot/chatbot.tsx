@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { CSSProperties } from 'react'; // Untuk tipe CSSProperties
-
+import { fetchData } from '@components/api/chat';
 
 const Chatbot: React.FC = () => {
   const [userMessage, setUserMessage] = useState<string>('');
@@ -15,7 +15,7 @@ const Chatbot: React.FC = () => {
     if (!userMessage.trim()) return;
     setLoading(true);
     try {
-      const response = await fetchChatResponse(userMessage);
+      const response = await fetchData(userMessage);
       setChatResponse(response.messages[0]?.content || 'No response');
     } catch (error) {
       setChatResponse('An error occurred. Please try again.');
