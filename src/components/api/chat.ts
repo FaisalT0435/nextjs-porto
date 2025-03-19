@@ -16,7 +16,7 @@ export const fetchData = async (message: string) => {
         { role: 'system', content: 'You are a helpful assistant.' }, // Pesan sistem
         { role: 'user', content: message }, // Pesan dari pengguna
       ],
-      model: 'gpt-3.5-turbo', // Ganti dengan model yang sesuai, misalnya 'deepseek-chat' jika tersedia
+      model: "deepseek-chat", // Ganti dengan model yang sesuai, misalnya 'deepseek-chat' jika tersedia
     });
 
     // Mengembalikan pesan dari AI
