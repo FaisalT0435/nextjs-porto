@@ -10,7 +10,7 @@ const openai = new OpenAI({
         dangerouslyAllowBrowser: true,
 });
 export const fetchData = async (message: string) => {
-  try {
+  // try {
     const completion = await openai.chat.completions.create({
       messages: [
         { role: 'system', content: 'You are a helpful assistant.' }, // Pesan sistem
@@ -21,10 +21,10 @@ export const fetchData = async (message: string) => {
 
     // Mengembalikan pesan dari AI
     return { messages: [{ content: completion.choices[0].message.content }] };
-  } catch (error) {
-    console.error('Error fetching chat response:', error);
-    return { messages: [{ content: 'Error retrieving response' }] };
-  }
+  // } catch (error) {
+  //   console.error('Error fetching chat response:', error);
+  //   return { messages: [{ content: 'Error retrieving response' }] };
+  // }
 };
 
   
