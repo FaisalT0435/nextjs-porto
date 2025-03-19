@@ -7,6 +7,8 @@ import OpenAI from "openai";
 const openai = new OpenAI({
         baseURL: 'https://api.deepseek.com/v1',
         apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+        dangerouslyAllowBrowser: true,
+
 });
 export const fetchData = async (message: string) => {
   // try {
