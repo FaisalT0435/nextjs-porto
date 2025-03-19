@@ -1,30 +1,31 @@
 // import { NextApiRequest, NextApiResponse } from 'next';
 // import axios from 'axios';
 
-const axios = require('axios');
 
-const options = {
-  method: 'POST',
-  url: 'https://deepseek-v3.p.rapidapi.com/chat',
-  headers: {
-    'x-rapidapi-key': 'ddeccccccc2f7dbfp1sssssse2fg',
-    'x-rapidapi-host': 'deepseek-v3.p.rapidapi.com',
-    'Content-Type': 'application/json'
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+        baseURL: 'https://api.deepseek.com',
+        apiKey: 'sk-54b91a1281ce4220860239cbd69736bd'
+});
+export const fetchData = async (message: string) => {
+  try {
+    const completion = await openai.chat.completions.create({
+      messages: [
+        { role: 'system', content: 'You are a helpful assistant.' }, // Pesan sistem
+        { role: 'user', content: message }, // Pesan dari pengguna
+      ],
+      model: 'gpt-3.5-turbo', // Ganti dengan model yang sesuai, misalnya 'deepseek-chat' jika tersedia
+    });
+
+    // Mengembalikan pesan dari AI
+    return { messages: [{ content: completion.choices[0].message.content }] };
+  } catch (error) {
+    console.error('Error fetching chat response:', error);
+    return { messages: [{ content: 'Error retrieving response' }] };
   }
 };
 
-export const fetchData = async (message: string) => {
-    try {
-      const response = await axios.request({
-        ...options,
-        data: { messages: [{ role: 'user', content: message }] },
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching chat response:', error);
-      return { messages: [{ content: 'Error retrieving response' }] };
-    }
-  };
   
   export default fetchData;
 
