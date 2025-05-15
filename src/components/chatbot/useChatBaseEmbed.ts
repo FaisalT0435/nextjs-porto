@@ -1,11 +1,10 @@
-"use client";
-
 import { useEffect } from "react";
-
 const EMBED_SCRIPT_ID = "D8q3wUqW_4sXXNGUdYA3E";
 
-const Chatbot: React.FC = () => {
+export function useChatbaseEmbed(isOpen: boolean) {
   useEffect(() => {
+    if (!isOpen) return;
+
     // Hapus script & embed lama jika ada
     const oldScript = document.getElementById("chatbase-loader");
     if (oldScript) oldScript.remove();
@@ -14,7 +13,6 @@ const Chatbot: React.FC = () => {
 
     // Inject embed script
     const script = document.createElement("script");
-    script.id = "chatbase-loader";
     script.innerHTML = `
       (function(){
         if(!window.chatbase||window.chatbase("getState")!=="initialized"){
@@ -38,11 +36,25 @@ const Chatbot: React.FC = () => {
           script.onload = function() {
             setTimeout(function() {
               var embed = document.getElementById("${EMBED_SCRIPT_ID}");
-              if (embed) {
-                embed.style.left = "100px";
+              var container = document.getElementById("chatbase-embed");
+              if (embed && container && !container.contains(embed)) {
+                container.appendChild(embed);
+                embed.style.position = "absolute";
+                embed.style.inset = "0";
+                embed.style.width = "100%";
+                embed.style.height = "100%";
+                embed.style.minHeight = "100%";
+                embed.style.minWidth = "100%";
+                embed.style.border = "none";
+                embed.style.background = "transparent";
+                embed.style.boxShadow = "none";
                 embed.style.right = "unset";
-                embed.style.bottom = "20px";
-                embed.style.position = "fixed";
+                embed.style.bottom = "unset";
+                embed.style.left = "unset";
+                embed.style.top = "unset";
+                console.log("Embed dipindahkan ke dalam container!");
+              } else {
+                console.log("Embed/container tidak ditemukan", embed, container);
               }
             }, 500);
           }
@@ -51,6 +63,7 @@ const Chatbot: React.FC = () => {
         else{window.addEventListener("load",onLoad)}
       })();
     `;
+    script.id = "chatbase-loader";
     document.body.appendChild(script);
 
     return () => {
@@ -59,9 +72,5 @@ const Chatbot: React.FC = () => {
       const embed = document.getElementById(EMBED_SCRIPT_ID);
       if (embed) embed.remove();
     };
-  }, []);
-
-  return null;
-};
-
-export default Chatbot;
+  }, [isOpen]);
+}
