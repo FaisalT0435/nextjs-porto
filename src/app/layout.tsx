@@ -75,6 +75,7 @@ export const metadata: Metadata = {
     "GCP",
     "Azure",
     "Indonesia architect",
+    "DevOps"
     
   ],
 };
