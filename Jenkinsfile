@@ -39,7 +39,7 @@ pipeline {
       }
     }
 
-    stage('Kirim Email Approval') {
+    stage('Send Email Approval') {
       steps {
         emailext (
           subject: "Approval needed for Jenkins Deploy (${env.BUILD_TAG})",
