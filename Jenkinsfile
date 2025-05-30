@@ -61,7 +61,7 @@ pipeline {
       steps {
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
   sh """
-    ssh -o StrictHostKeyChecking=no ubuntu@EC2_PUBLIC_IP '
+    ssh -o StrictHostKeyChecking=no ubuntu@${env.SSH_HOST} '
       git config --global --add safe.directory /home/ubuntu/web/porto/nextjs-porto && \
       cd /home/ubuntu/web/porto/nextjs-porto && \
       git pull
