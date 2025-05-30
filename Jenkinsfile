@@ -17,14 +17,20 @@ pipeline {
   }
 
   stages {
+    stage('Clone Repository') {
+      steps {
+        checkout scm
+      }
+    }
+
     stage('Verifikasi Branch') {
       steps {
         script {
-          // Cek branch yang sedang jalan (env.GIT_BRANCH bisa saja kosong, jadi safer pakai git command)
           def currentBranch = sh(
             script: "git rev-parse --abbrev-ref HEAD",
             returnStdout: true
           ).trim()
+          echo "Current branch: ${currentBranch}"
           if (currentBranch != env.BRANCH_MAIN && currentBranch != env.BRANCH_DEVELOP) {
             currentBuild.result = 'ABORTED'
             error("Deploy hanya untuk branch main atau develop. Branch saat ini: " + currentBranch)
@@ -51,17 +57,48 @@ pipeline {
       }
     }
 
-    stage('Deploy ke EC2') {
+    stage('Deploy ke EC2 - Git Pull') {
       steps {
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
           sh """
             ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
-              cd ${env.APP_DIR} && \
-              git pull && \
-              pm2 stop ${env.PM2_APP_NAME} || true && \
-              npm install && \
-              npm run build && \
-              pm2 start ${env.PM2_APP_NAME}
+              cd ${env.APP_DIR} && git pull
+            '
+          """
+        }
+      }
+    }
+
+    stage('Deploy ke EC2 - Install Dependencies') {
+      steps {
+        sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
+          sh """
+            ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
+              cd ${env.APP_DIR} && npm install
+            '
+          """
+        }
+      }
+    }
+
+    stage('Deploy ke EC2 - Build App') {
+      steps {
+        sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
+          sh """
+            ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
+              cd ${env.APP_DIR} && npm run build
+            '
+          """
+        }
+      }
+    }
+
+    stage('Deploy ke EC2 - Restart PM2') {
+      steps {
+        sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
+          sh """
+            ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
+              cd ${env.APP_DIR} && pm2 stop ${env.PM2_APP_NAME} || true && pm2 start ${env.PM2_APP_NAME}
             '
           """
         }
