@@ -24,20 +24,17 @@ pipeline {
     }
 
     stage('Verifikasi Branch') {
-      steps {
-        script {
-          def currentBranch = sh(
-            script: "git rev-parse --abbrev-ref HEAD",
-            returnStdout: true
-          ).trim()
-          echo "Current branch: ${currentBranch}"
-          if (currentBranch != env.BRANCH_MAIN && currentBranch != env.BRANCH_DEVELOP) {
-            currentBuild.result = 'ABORTED'
-            error("Deploy hanya untuk branch main atau develop. Branch saat ini: " + currentBranch)
-          }
-        }
+  steps {
+    script {
+      def currentBranch = env.GIT_BRANCH?.replace('origin/', '').toLowerCase()
+      echo "Branch saat ini: ${currentBranch}"
+      if (currentBranch != env.BRANCH_MAIN && currentBranch != env.BRANCH_DEVELOP) {
+        currentBuild.result = 'ABORTED'
+        error("Deploy hanya untuk branch main atau develop. Branch saat ini: " + currentBranch)
       }
     }
+  }
+}
 
     stage('Send Email Approval') {
       steps {
