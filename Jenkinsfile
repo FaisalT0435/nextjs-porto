@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    EC2_IP = credentials('ec2-ip-address')                 // IP Public EC2
+    EC2_HOST = credentials('ec2-ip-address')                 // IP Public EC2
     EC2_USER         = 'ubuntu'                  // Username EC2
     SSH_CREDENTIALS  = 'AWS-EC2'             // Credentials ID di Jenkins
     APP_DIR          = '/home/ubuntu/web/porto/nextjs-porto'
@@ -35,13 +35,7 @@ pipeline {
     }
   }
 }
-stage('Debug Env') {
-  steps {
-    echo "EC2_HOST: ${env.EC2_HOST}"
-    echo "params.EC2_HOST: ${params.EC2_HOST}"
-    echo "EC2_IP: ${env.EC2_IP}"
-  }
-}
+
 
 
     stage('Send Email Approval') {
