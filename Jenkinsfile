@@ -56,7 +56,7 @@ pipeline {
       }
     }
 
-    stage('Deploy ke EC2 - Pull ') {
+    stage('Deploy ke EC2 - Git Pull ') {
       steps {
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
           sh """
