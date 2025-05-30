@@ -2,9 +2,9 @@ pipeline {
   agent any
 
   environment {
-    EC2_HOST         = '16.78.148.238'                 // IP Public EC2
+    EC2_IP = credentials('ec2-ip-address')                 // IP Public EC2
     EC2_USER         = 'ubuntu'                  // Username EC2
-    SSH_CREDENTIALS  = 'ec2-ssh-key'             // Credentials ID di Jenkins
+    SSH_CREDENTIALS  = 'AWS-EC2'             // Credentials ID di Jenkins
     APP_DIR          = '/home/ubuntu/web/porto/nextjs-porto'
     PM2_APP_NAME     = 'portofolio'
     RECIPIENT_EMAIL  = 'faisaltsurya@gamil.com'         // Email approval/alert
