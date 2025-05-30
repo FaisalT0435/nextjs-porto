@@ -7,7 +7,7 @@ pipeline {
     SSH_CREDENTIALS  = 'AWS-EC2'             // Credentials ID di Jenkins
     APP_DIR          = '/home/ubuntu/web/porto/nextjs-porto'
     PM2_APP_NAME     = 'portofolio'
-    RECIPIENT_EMAIL  = 'faisaltsurya@gamil.com'         // Email approval/alert
+    RECIPIENT_EMAIL  = 'faisaltsurya@gmail.com'         // Email approval/alert
     BRANCH_MAIN      = 'main'
     BRANCH_DEVELOP   = 'develop'
   }
