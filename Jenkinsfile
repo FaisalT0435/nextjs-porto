@@ -35,6 +35,14 @@ pipeline {
     }
   }
 }
+stage('Debug Env') {
+  steps {
+    echo "EC2_HOST: ${env.EC2_HOST}"
+    echo "params.EC2_HOST: ${params.EC2_HOST}"
+    echo "EC2_IP: ${env.EC2_IP}"
+  }
+}
+
 
     stage('Send Email Approval') {
       steps {
