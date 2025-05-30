@@ -49,7 +49,7 @@ pipeline {
       }
     }
 
-    stage('Approval Manual di Jenkins') {
+    stage('Approve Manual di Jenkins') {
       steps {
         script {
           input message: "Approve deployment ke EC2 untuk branch ini?", ok: 'Approve Deploy'
