@@ -56,8 +56,19 @@ pipeline {
       }
     }
 
+    
     stage('Deploy ke EC2 - Git Pull ') {
       steps {
+        sshagent (credentials: ['ec2-ssh-key']) {
+  sh """
+    ssh -o StrictHostKeyChecking=no ubuntu@EC2_PUBLIC_IP '
+      git config --global --add safe.directory /home/ubuntu/web/porto/nextjs-porto && \
+      cd /home/ubuntu/web/porto/nextjs-porto && \
+      git pull
+    '
+  """
+}
+
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
           sh """
             ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
