@@ -68,7 +68,7 @@ pipeline {
       }
     }
 
-    stage('Deploy ke EC2 - Install Dependencies') {
+    stage('Deploy ke EC2 - Install Dependencies Node') {
       steps {
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
           sh """
