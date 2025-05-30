@@ -23,7 +23,7 @@ pipeline {
       }
     }
 
-    stage('Verifikasi Branch') {
+    stage('Verifikas Branch') {
   steps {
     script {
       def currentBranch = env.GIT_BRANCH?.replace('origin/', '').toLowerCase()
