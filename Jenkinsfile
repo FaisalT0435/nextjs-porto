@@ -87,9 +87,9 @@ stage('Debug Environment Variables') {
         //       cd ${env.APP_DIR} && git pull
         //     '
         //   """
-    //     }
-    //   }
-    // }
+        // }
+      }
+    }
 
     stage('Deploy ke EC2 - Install Dependencies Node') {
       steps {
