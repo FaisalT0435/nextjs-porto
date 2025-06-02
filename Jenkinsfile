@@ -65,16 +65,17 @@ stage('Debug Environment Variables') {
     
     stage('Deploy ke EC2 - Git Pull ') {
       steps {
-       sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
+sshagent (credentials: ['ec2-ssh-key']) {
   sh """
     ssh -o StrictHostKeyChecking=no ubuntu@${env.EC2_HOST} '
-      uptime && \
       git config --global --add safe.directory /home/ubuntu/web/porto/nextjs-porto && \
       cd /home/ubuntu/web/porto/nextjs-porto && \
-      git pull
+      git fetch --all && \
+      git reset --hard origin/main
     '
   """
 }
+
 
 
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
