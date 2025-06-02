@@ -65,7 +65,7 @@ stage('Debug Environment Variables') {
     
     stage('Deploy ke EC2 - Git Pull ') {
       steps {
-        def currentBranch = env.GIT_BRANCH?.replace('origin/', '').toLowerCase()
+      // def currentBranch = env.GIT_BRANCH?.replace('origin/', '').toLowerCase()
        sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
       
   sh """
