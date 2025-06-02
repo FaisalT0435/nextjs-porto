@@ -167,10 +167,11 @@ const projects: IProjectItem[] = [
     title: "Room Log Monitoring",
     description:
       "App web for room log monitoing with record mask and analysis user log ",
-    icon: "/skills/ftsa_house_48x48.svg",
-    repoType: RepoType.Private,
+    icon: "/skills/ftsa_house_48x48.png",
+    repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "",
+    url: "https://log-room.faisalproject.com/login",
     tags: ["Cloud", "NextJs"],
   },
   {
@@ -178,10 +179,11 @@ const projects: IProjectItem[] = [
     title: "Informatika Tools",
     description:
       "App web for Informatika tools to help programmer or IT ",
-    icon: "/skills/android-chrome-192x192.svg",
-    repoType: RepoType.Private,
+    icon: "/skills/favicon-32x32.png",
+    repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "",
+    url: "https://tools-if.faisalproject.com/",
     tags: ["Cloud", "NextJs", "Informatika"],
   },
 ];
