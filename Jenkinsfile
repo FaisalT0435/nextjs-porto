@@ -71,21 +71,22 @@ stage('Debug Environment Variables') {
       uptime && \
       git config --global --add safe.directory /home/ubuntu/web/porto/nextjs-porto && \
       cd /home/ubuntu/web/porto/nextjs-porto && \
-      git fetch --all && \
-      git reset --hard origin/main
       git pull
+      git fetch --all && \
+      git checkout ${params.BRANCH_NAME} && \
+      git reset --hard origin/${params.BRANCH_NAME} && \
 
     '
   """
 }
 
 
-        sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
-          sh """
-            ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
-              cd ${env.APP_DIR} && git pull
-            '
-          """
+        // sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
+        //   sh """
+        //     ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
+        //       cd ${env.APP_DIR} && git pull
+        //     '
+        //   """
         }
       }
     }
