@@ -55,19 +55,27 @@ pipeline {
         }
       }
     }
+stage('Debug Env') {
+  steps {
+    echo "SSH_CREDENTIALS: ${env.SSH_CREDENTIALS}"
+    echo "EC2_HOST: ${env.EC2_HOST}"
+  }
+}
 
     
     stage('Deploy ke EC2 - Git Pull ') {
       steps {
-        sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
+       sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
   sh """
     ssh -o StrictHostKeyChecking=no ubuntu@${env.EC2_HOST} '
+      uptime && \
       git config --global --add safe.directory /home/ubuntu/web/porto/nextjs-porto && \
       cd /home/ubuntu/web/porto/nextjs-porto && \
       git pull
     '
   """
 }
+
 
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
           sh """
