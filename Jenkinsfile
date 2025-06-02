@@ -71,9 +71,7 @@ stage('Debug Environment Variables') {
       uptime && \
       git config --global --add safe.directory /home/ubuntu/web/porto/nextjs-porto && \
       cd /home/ubuntu/web/porto/nextjs-porto && \
-      git fetch --all && \
-      git checkout ${params.BRANCH_NAME} && \
-      git reset --hard origin/${params.BRANCH_NAME} && \
+      git pull 
 
     '
   """
@@ -84,7 +82,10 @@ stage('Debug Environment Variables') {
         //   sh """
         //     ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
         //       cd ${env.APP_DIR} && git pull
-        //     '
+        //   
+        //       git fetch --all && \
+      // git checkout ${params.BRANCH_NAME} && \
+      // git reset --hard origin/${params.BRANCH_NAME} && \  '
         //   """
         // }
       }
@@ -94,7 +95,7 @@ stage('Debug Environment Variables') {
       steps {
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
           sh """
-            ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
+             ssh -o StrictHostKeyChecking=no ubuntu@${env.EC2_HOST} '
               cd ${env.APP_DIR} && npm install --legacy-peer-deps
             '
           """
@@ -106,7 +107,7 @@ stage('Debug Environment Variables') {
       steps {
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
           sh """
-            ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
+             ssh -o StrictHostKeyChecking=no ubuntu@${env.EC2_HOST}} '
               cd ${env.APP_DIR} && npm run build
             '
           """
@@ -118,7 +119,7 @@ stage('Debug Environment Variables') {
       steps {
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
           sh """
-            ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
+             ssh -o StrictHostKeyChecking=no ubuntu@${env.EC2_HOST}'
               cd ${env.APP_DIR} && pm2 stop ${env.PM2_APP_NAME} || true && pm2 start ${env.PM2_APP_NAME}
             '
           """

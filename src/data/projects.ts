@@ -162,6 +162,27 @@ const projects: IProjectItem[] = [
     githubUrl: "",
     tags: ["Cloud", "Disaster Recovery"],
   },
-  
+  {
+    id: "Room Log Monitoring",
+    title: "Room Log Monitoring",
+    description:
+      "App web for room log monitoing with record mask and analysis user log ",
+    icon: "/skills/ftsa_house_48x48.svg",
+    repoType: RepoType.Private,
+    projectType: ProjectType.Personal,
+    githubUrl: "",
+    tags: ["Cloud", "NextJs"],
+  },
+  {
+    id: "IF Tools",
+    title: "Informatika Tools",
+    description:
+      "App web for Informatika tools to help programmer or IT ",
+    icon: "/skills/android-chrome-192x192.svg",
+    repoType: RepoType.Private,
+    projectType: ProjectType.Personal,
+    githubUrl: "",
+    tags: ["Cloud", "NextJs", "Informatika"],
+  },
 ];
 export default projects;
