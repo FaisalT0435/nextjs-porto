@@ -73,7 +73,9 @@ stage('Debug Environment Variables') {
       cd /home/ubuntu/web/porto/nextjs-porto && \
       git fetch --all && \
       git checkout ${params.BRANCH_NAME} && \
-      git reset --hard origin/${params.BRANCH_NAME} 
+      git reset --hard origin/${params.BRANCH_NAME} && \
+
+    '
   """
 }
 
