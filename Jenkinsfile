@@ -95,7 +95,7 @@ stage('Debug Environment Variables') {
         sshagent (credentials: ["${env.SSH_CREDENTIALS}"]) {
           sh """
             ssh -o StrictHostKeyChecking=no ${env.EC2_USER}@${env.EC2_HOST} '
-              cd ${env.APP_DIR} && npm install
+              cd ${env.APP_DIR} && npm install --legacy-peer-deps
             '
           """
         }
