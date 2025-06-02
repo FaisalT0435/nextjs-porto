@@ -167,7 +167,7 @@ const projects: IProjectItem[] = [
     title: "Room Log Monitoring",
     description:
       "App web for room log monitoing with record mask and analysis user log ",
-    icon: "/skills/ftsa_house_48x48.png",
+    icon: "/skills/ftsa_house_48x48.ico",
     repoType: RepoType.Public,
     projectType: ProjectType.Personal,
     githubUrl: "",
