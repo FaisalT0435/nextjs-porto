@@ -55,7 +55,7 @@ pipeline {
         }
       }
     }
-stage('Debug Env') {
+stage('Debug Environment Variables') {
   steps {
     echo "SSH_CREDENTIALS: ${env.SSH_CREDENTIALS}"
     echo "EC2_HOST: ${env.EC2_HOST}"
