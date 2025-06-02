@@ -71,9 +71,9 @@ stage('Debug Environment Variables') {
       uptime && \
       git config --global --add safe.directory /home/ubuntu/web/porto/nextjs-porto && \
       cd /home/ubuntu/web/porto/nextjs-porto && \
-      git pull
-      git fetch --all && \
       git checkout ${params.BRANCH_NAME} && \
+      git pull
+      git fetch --all && \     
       git reset --hard origin/${params.BRANCH_NAME} && \
 
     '
