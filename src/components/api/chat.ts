@@ -2,34 +2,34 @@
 // import axios from 'axios';
 
 
-import OpenAI from "openai";
+// import OpenAI from "openai";
 
-const openai = new OpenAI({
-        baseURL: 'https://api.deepseek.com/v1',
-        apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-        dangerouslyAllowBrowser: true,
+// const openai = new OpenAI({
+//         baseURL: 'https://api.deepseek.com/v1',
+//         apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+//         dangerouslyAllowBrowser: true,
 
-});
-export const fetchData = async (message: string) => {
-  // try {
-    const completion = await openai.chat.completions.create({
-      messages: [
-        { role: 'system', content: 'You are a helpful assistant.' }, // Pesan sistem
-        { role: 'user', content: message }, // Pesan dari pengguna
-      ],
-      model: "deepseek-chat", // Ganti dengan model yang sesuai, misalnya 'deepseek-chat' jika tersedia
-    });
+// });
+// export const fetchData = async (message: string) => {
+//   // try {
+//     const completion = await openai.chat.completions.create({
+//       messages: [
+//         { role: 'system', content: 'You are a helpful assistant.' }, // Pesan sistem
+//         { role: 'user', content: message }, // Pesan dari pengguna
+//       ],
+//       model: "deepseek-chat", // Ganti dengan model yang sesuai, misalnya 'deepseek-chat' jika tersedia
+//     });
 
-    // Mengembalikan pesan dari AI
-    return { messages: [{ content: completion.choices[0].message.content }] };
-  // } catch (error) {
-  //   console.error('Error fetching chat response:', error);
-  //   return { messages: [{ content: 'Error retrieving response' }] };
-  // }
-};
+//     // Mengembalikan pesan dari AI
+//     return { messages: [{ content: completion.choices[0].message.content }] };
+//   // } catch (error) {
+//   //   console.error('Error fetching chat response:', error);
+//   //   return { messages: [{ content: 'Error retrieving response' }] };
+//   // }
+// };
 
   
-  export default fetchData;
+//   export default fetchData;
 
 // import { NextResponse } from 'next/server';
 // import openai from '@/components/api/openai';
